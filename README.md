@@ -1,6 +1,6 @@
 # React and TypeScript projects
 
-These are small React and TypeScript projects (styled with TailwindCSS) developed with what was learned from the course called "React and TypeScript - The Complete Guide Creating +10 Projects" found on the platform of [Udemy](https://www.udemy.com/)
+These are small React and TypeScript projects (styled with TailwindCSS) developed with what was learned from the course called ["React y TypeScript - La Guía Completa Creando +10 Proyectos"](https://www.udemy.com/course/react-de-principiante-a-experto-creando-mas-de-10-aplicaciones/) found on the platform of [Udemy](https://www.udemy.com/)
 
 Most projects will be deployed on [Netlify](https://www.netlify.com/) 
 
