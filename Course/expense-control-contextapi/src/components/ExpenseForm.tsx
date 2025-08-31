@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import type { DraftExpense, Value } from "../types";
 import { categories } from "../data/categories";
 
@@ -7,6 +7,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 import ErrorMessage from "./ErrorMessage";
+import { useBudget } from "../hooks/useBudget";
 
 export default function ExpenseForm() {
 
@@ -16,7 +17,18 @@ export default function ExpenseForm() {
     category: "",
     date: new Date()
   })
+
   const [error, setError] = useState("")
+  const {dispatch, state, remainingBudget} = useBudget();
+  const [previousAmount, setPreviousAmount] = useState(0)
+
+  useEffect(() => {
+    if (state.editingId) {
+      const editingExpense = state.expenses.filter( currentExpense => currentExpense.id === state.editingId )[0]
+      setExpense(editingExpense) // From global to local
+      setPreviousAmount(editingExpense.amount)
+    }
+  }, [state.editingId])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     const {name, value} = e.target
@@ -38,18 +50,41 @@ export default function ExpenseForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    // Validation
     if (Object.values(expense).includes("")) {
       setError("All fields are mandatory")
       return
     }
-    console.log("All good")
+
+    // Validation of not exceeding the limit
+    if ((expense.amount - previousAmount) > remainingBudget) {
+      setError("This expense is out of budget")
+      return
+    }
+
+    // To add or update an expense
+    if (state.editingId) {
+      dispatch({type: "update-expense", payload: {expense: {id: state.editingId, ...expense}}})
+    } else {
+
+      dispatch({type: "add-expense", payload: {expense}}) // From local to global
+    }
+    
+    // Resetting the state
+    setExpense({
+      amount: 0,
+      expenseName: "",
+      category: "",
+      date: new Date()
+    })
+    setPreviousAmount(0)
   }
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
       <legend 
         className="uppercase text-center text-2xl font-black border-b-4 border-blue-500 py-2"
-      >New Expense
+      >{state.editingId ? "Save Changes" : "New Expense"}
       </legend>
 
       {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -66,6 +101,7 @@ export default function ExpenseForm() {
           className="bg-slate-100 p-2"
           name="expenseName"
           onChange={handleChange}
+          value={expense.expenseName}
         />
       </div>
 
@@ -81,6 +117,8 @@ export default function ExpenseForm() {
           className="bg-slate-100 p-2"
           name="amount"
           onChange={handleChange}
+          value={expense.amount}
+
         />
       </div>
 
@@ -118,7 +156,7 @@ export default function ExpenseForm() {
       <input
         type="submit"
         className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
-        value={"Add Expense"}
+        value={state.editingId ? "Save Changes" : "Add Expense"}
       />
     </form>
   )

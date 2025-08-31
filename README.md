@@ -26,4 +26,6 @@ Link: https://lucky-hummingbird-af9167.netlify.app/
 
 ## Expense Control with ContextAPI
 
-Working on it... (Not deployed but with preview code).
+A small expense control program that gives us an introduction to ContextAPI, as well as context creation. Creating a Custom Hook to easily access the context and the Reducer. Working with slightly more advanced web interfaces.
+
+Link: https://leafy-puppy-2e0a33.netlify.app/

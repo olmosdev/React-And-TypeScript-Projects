@@ -23,4 +23,22 @@ console.log(_page);
 const __page = 3 ?? 1; // Select a varible + Ctrl + D
 console.log(__page);
 
+/*
+Updated at 17/08/2025
+"!" is used to tell JS that this variable will not be null and that we guarantee that it will have a value.
 
+export default function ExpenseDetail({expense}: ExpenseDetailProps) {
+  return (
+    <div className="bg-white shadow-lg p-10 w-full border-b border-gray-200">
+        <div>
+
+        </div>
+
+        <div>
+            <p>{expense.expenseName}</p>
+            <p className="text-slate-600 text-sm">{ formatDate(expense.date!.toString()) }</p>
+        </div>
+    </div>
+  )
+}
+*/
