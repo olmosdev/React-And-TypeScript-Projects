@@ -29,3 +29,15 @@ Link: https://lucky-hummingbird-af9167.netlify.app/
 A small expense control program that gives us an introduction to ContextAPI, as well as context creation. Creating a Custom Hook to easily access the context and the Reducer. Working with slightly more advanced web interfaces.
 
 Link: https://leafy-puppy-2e0a33.netlify.app/
+
+# Patients with Zustand
+
+A small patient manager built with React Hook Form, Zustand (basic introduction to creating a global state), and React-Toastify (to add animations).
+
+Link: https://delightful-dasik-14f5a0.netlify.app/
+
+# Weather with ZOD
+
+A small weather application that queries information from an external API using Axios and validates the response using libraries such as ZOD (to validate the types of data expected to come in the API query).
+
+Link: https://amazing-sprite-493aa5.netlify.app/
