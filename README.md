@@ -41,3 +41,9 @@ Link: https://delightful-dasik-14f5a0.netlify.app/
 A small weather application that queries information from an external API using Axios and validates the response using libraries such as ZOD (to validate the types of data expected to come in the API query).
 
 Link: https://amazing-sprite-493aa5.netlify.app/
+
+# Cryptocurrency exchange tool
+
+A small web application for quoting cryptocurrencies based on different currencies. The data is real-time as it is retrieved from an external API (https://developers.coindesk.com/). `Zustand` is used to create a global state for the app, and `Zod` is used to validate the API response schemas. Images are also loaded from another external API of the same web service.
+
+Link: https://elegant-hummingbird-a07045.netlify.app/
